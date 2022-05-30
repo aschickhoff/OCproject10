@@ -15,6 +15,10 @@
 - The app would enable users to design different projects, add users to a particular project, create issues in the project, and label these issues as per their priorities, tags, etc.
 - All of the three apps will leverage the API endpoints that would serve the data.
 
+## Postman documentation
+```Bash
+https://documenter.getpostman.com/view/19314829/Uz5CNJxZ
+```
 
 ## Prerequisite
 - [Python 3.10.4](https://www.python.org/ "Python") is installed
