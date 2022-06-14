@@ -22,6 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-+6_jq#ymh@5uq+*@#v1_gt8nsxxjyz&2n=yc$_9^xd^o*+g6cq"
 
+# SECRET_KEY needs to be saved in .env, then ->
+# import os
+# SECRET_KEY = os.getenv("SECRET_KEY")
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -137,3 +142,18 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
 }
+
+# Cross-site Scripting (XSS)
+# -> django.middleware.security.SecurityMiddleware
+
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+
+
+# SSL Redirect
+# SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security
+# SECURE_HSTS_SECONDS = 86400  # 1 day
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True

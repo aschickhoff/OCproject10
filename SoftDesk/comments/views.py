@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from SoftDesk.permissions import IsContributor, IsContributorAuthor
+from SoftDesk.permissions import IsAuthor, IsContributor
 from .models import Comment
 from issues.models import Issue
 
@@ -11,21 +11,9 @@ from .serializers import CommentSerializer
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated, IsAuthor, IsContributor]
 
-    def get_permissions(self):
-        if self.action == "create":
-            permission_classes = [IsAuthenticated(), IsContributor()]
-        if self.action == "list":
-            permission_classes = [IsAuthenticated(), IsContributor()]
-        if self.action == "retrieve":
-            permission_classes = [IsAuthenticated(), IsContributor()]
-        if self.action == "update":
-            permission_classes = [IsAuthenticated(), IsContributorAuthor()]
-        if self.action == "destroy":
-            permission_classes = [IsAuthenticated(), IsContributorAuthor()]
-        return permission_classes
-
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         return Comment.objects.filter(issue_id=self.kwargs["issue_pk"])
 
     def perform_create(self, serializer):
